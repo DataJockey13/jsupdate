@@ -1,2 +1,2 @@
-const versionFile = "version.info";
+const versionFile = "/version.info";
 const currentVersion = "::version::";
