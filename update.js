@@ -28,7 +28,7 @@ function updateFile(template, target) {
   writeUpdatedContent(target, updatedContent);
 }
 
-writeUpdatedContent("version.info", version);
+writeUpdatedContent("www/version.info", version);
 updateFile("templates/about.html", "www/pages/about.html");
 updateFile("templates/check4update.js", "www/js/check4update.js");
 

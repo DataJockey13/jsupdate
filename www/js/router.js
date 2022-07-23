@@ -3,6 +3,7 @@ const route = (event) => {
     event.preventDefault();
     window.history.pushState({}, "", event.target.href);
     handleLocation();
+    check4update();
 }
 
 const routes = {
@@ -12,11 +13,24 @@ const routes = {
     "/about" : "/pages/about.html",
 }
 
+const buffer = new Array();
+
+function getChachedRoute(route) {
+    return buffer[route];     
+}
+
 const handleLocation = async () => {
     const path = window.location.pathname;
     const route = routes[path] || routes[404];
-    const html = await fetch(route)
-                    .then((data) => data.text());
+
+    let html = getChachedRoute(route);
+    
+    if (html == null)
+    {
+        html = await fetch(route).then((data) => data.text());
+        buffer[route] = html;
+    }
+
     document.getElementById("main-page").innerHTML = html;    
 }
 
