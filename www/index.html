@@ -10,11 +10,13 @@
             <nav id="main-nav" class="sidebar">                
                 <img width="56" src="img/poc.jpg" />
                 <a href="/" onclick="route()">Home</a>
-                <a href="/about" onclick="route()">About</a>
+                <a href="/about" onclick="route();">About</a>
             </nav>
             <div id="main-page"></div>
+            <div style="visibility:hidden;" id="update"><button onclick="location.reload()">  update  </button></div>
         </div>
 
         <script src="js/router.js"></script>
+        <script src="js/check4update.js"></script>
     </body>
 </html>
