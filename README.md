@@ -5,6 +5,6 @@
 
 - simulate version update with update.js
 
-´´´
+```
 node update.js 2.0
-´´´
+```
