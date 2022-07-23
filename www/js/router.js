@@ -1,11 +1,3 @@
-const route = (event) => {
-    event = event || window.event;
-    event.preventDefault();
-    window.history.pushState({}, "", event.target.href);
-    handleLocation();
-    check4update();
-}
-
 const routes = {
     404 : "pages/404.html",
     "/" : "/pages/index.html",
@@ -14,6 +6,14 @@ const routes = {
 }
 
 const buffer = new Array();
+
+const route = (event) => {
+    event = event || window.event;
+    event.preventDefault();
+    window.history.pushState({}, "", event.target.href);
+    handleLocation();
+    check4update();
+}
 
 function getChachedRoute(route) {
     return buffer[route];     

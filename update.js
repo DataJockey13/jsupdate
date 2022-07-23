@@ -30,6 +30,6 @@ function updateFile(template, target) {
 
 writeUpdatedContent("www/version.info", version);
 updateFile("templates/about.html", "www/pages/about.html");
-updateFile("templates/check4update.js", "www/js/check4update.js");
+updateFile("templates/globals.js", "www/js/globals.js");
 
 console.log("done");
