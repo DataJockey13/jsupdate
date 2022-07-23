@@ -5,7 +5,7 @@ const routes = {
     "/about" : "/pages/about.html",
 }
 
-const buffer = new Array();
+var buffer = new Array();
 
 const route = (event) => {
     event = event || window.event;
