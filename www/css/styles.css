@@ -28,6 +28,12 @@ hr {
   flex-grow: 1;
 }
 
+#main-log {
+  background: #AAA;
+  width: 200px;
+  padding: 1rem;
+}
+
 #update {
   padding: 1rem;
 }

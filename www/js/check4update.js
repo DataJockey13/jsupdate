@@ -22,6 +22,7 @@ const check4update = async (event) => {
             updateButton.style.visibility = "hidden";
         }        
     }
+    log("checked");
 }
 
 window.onfocus = check4update;
