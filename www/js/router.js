@@ -12,7 +12,7 @@ const route = (event) => {
     event.preventDefault();
     window.history.pushState({}, "", event.target.href);
     handleLocation();
-    check4update();
+    //check4update();
 }
 
 function getChachedRoute(route) {
