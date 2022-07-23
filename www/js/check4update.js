@@ -1,5 +1,5 @@
 const isUpdateAvailable = async () => {
-    const version = await fetch(versionFile)
+    const version = await fetch(versionFile, {cache: "no-cache"})
         .then((data) => data.text())
         .catch((error) => {
             console.log(error);
