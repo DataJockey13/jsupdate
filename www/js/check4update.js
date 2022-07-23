@@ -1,5 +1,5 @@
 const versionFile = "version.info";
-const currentVersion = "2.0";
+const currentVersion = "1.0";
 
 const isUpdateAvailable = async () => {
     const version = await fetch(versionFile)
