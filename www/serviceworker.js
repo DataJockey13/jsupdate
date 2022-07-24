@@ -12,22 +12,22 @@ const appMessage = (msg) => {
     broadcast.postMessage(msg);
 }
 
-this.addEventListener('install', event => {
-    console.log("serviceworker caching files");
-    event.waitUntil(
-        caches
-            .open(cacheName)
-            .then(cache => cache.addAll(routes))
-    );
-    self.skipWaiting();    
-});
+//this.addEventListener('install', event => {
+//    console.log("serviceworker caching files");
+//    event.waitUntil(
+//        caches
+//            .open(cacheName)
+//            .then(cache => cache.addAll(routes))
+//    );
+//    self.skipWaiting();    
+//});
 
 self.addEventListener('activate', (event) =>  {
     console.log('serviceworker claiming control');
     return self.clients.claim();
 });
 
-this.addEventListener('fetch', event => {
+this.addEventListener('fetch', event => {    
     event.respondWith(
             (async function() {
             const cache = await caches.open(cacheName);

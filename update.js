@@ -31,6 +31,5 @@ function updateFile(template, target) {
 writeUpdatedContent("www/version.info", version);
 updateFile("templates/about.html", "www/pages/about.html");
 updateFile("templates/globals.js", "www/js/globals.js");
-updateFile("templates/serviceworker.js", "www/serviceworker.js");
 
 console.log("done");
