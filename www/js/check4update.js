@@ -25,4 +25,4 @@ const check4update = async (event) => {
     log("checked");
 }
 
-//window.onfocus = check4update;
+window.onfocus = check4update;
