@@ -29,19 +29,26 @@ self.addEventListener('activate', (event) =>  {
     return self.clients.claim();
 });
 
+const isUpdateAvailable = async () => {
+    const version = await fetch(versionFile, {cache: "no-cache"})
+        .then((data) => data.text())
+        .catch((error) => {
+            console.log(error);
+        });   
+
+    if (version != currentVersion)
+    {
+        appMessage("update " + version + " available");
+        return true;
+    }
+    return false;
+}
+
 this.addEventListener('fetch', event => { 
-    const isUpdateAvailable = async () => {
-        const version = await fetch(versionFile, {cache: "no-cache"})
-            .then((data) => data.text())
-            .catch((error) => {
-                console.log(error);
-            });   
-    
-        if (version != currentVersion)
-        {
-            appMessage("update " + version + " available");
-        }
-    }       
+    if (isUpdateAvailable)
+    {
+        //
+    }
     event.respondWith(
             (async function() {
             const cache = await caches.open(cacheName);
