@@ -1,5 +1,8 @@
 const reload = () => {
     serviceWorkerMessage("reload");
+}
+
+const onServiceWorkerReload = () => {
     navigator.serviceWorker.getRegistration()
         .then( (reg) => {
             if (reg) {
@@ -7,6 +10,6 @@ const reload = () => {
             } else {
                 window.location.reload(true);
             }
-        });
-    log("reloaded");
+        });    
+    log("reloaded");        
 }

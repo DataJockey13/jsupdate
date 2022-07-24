@@ -60,6 +60,7 @@ broadcast.onmessage = (event) => {
     if (event.data == "reload")
     {
         self.caches.delete(cacheName);
+        appMessage("reload");
     }
     console.log("serviceworker message received: " + event.data, event);
 }

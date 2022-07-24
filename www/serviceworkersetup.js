@@ -13,7 +13,12 @@ else
 
 const broadcast = new BroadcastChannel('service-channel');
 broadcast.onmessage = (event) => {
-    console.log("service-channel message received: " + event.data);    
+    console.log("service-channel message received: " + event.data); 
+    if (event.data == "reload")
+    {
+        onServiceWorkerReload();
+        console.log("service-channel message received: " + event.data);    
+    }
 };
 
 const serviceWorkerMessage = (msg) => {
