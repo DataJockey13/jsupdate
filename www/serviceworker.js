@@ -1,5 +1,3 @@
-importScripts("/js/globals.js");
-
 const routes = [
     "/pages/404.html",
     "/pages/index.html",
@@ -14,41 +12,22 @@ const appMessage = (msg) => {
     broadcast.postMessage(msg);
 }
 
-//this.addEventListener('install', event => {
-//    console.log("serviceworker caching files");
-//    event.waitUntil(
-//        caches
-//            .open(cacheName)
-//            .then(cache => cache.addAll(routes))
-//    );
-//    self.skipWaiting();    
-//});
+this.addEventListener('install', event => {
+    console.log("serviceworker caching files");
+    event.waitUntil(
+        caches
+            .open(cacheName)
+            .then(cache => cache.addAll(routes))
+    );
+    self.skipWaiting();    
+});
 
 self.addEventListener('activate', (event) =>  {
     console.log('serviceworker claiming control');
     return self.clients.claim();
 });
 
-const isUpdateAvailable = async () => {
-    const version = await fetch(versionFile, {cache: "no-cache"})
-        .then((data) => data.text())
-        .catch((error) => {
-            console.log(error);
-        });   
-
-    if (version != currentVersion)
-    {
-        appMessage("update " + version + " available");
-        return true;
-    }
-    return false;
-}
-
 this.addEventListener('fetch', event => { 
-    if (isUpdateAvailable())
-    {
-        //
-    }
     event.respondWith(
             (async function() {
             const cache = await caches.open(cacheName);
