@@ -1,10 +1,17 @@
 if ('serviceWorker' in navigator)
 {
-        navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
-        .then( 
-            (registration) => console.log('serviceworker registration succeeded:', registration),
-            (error) => console.log('serviceworker registration failed:', error)
-        );
+        navigator.serviceWorker.getRegistration()
+        .then( (reg) => {
+            if (reg) {    
+                    reg.update();          
+            } else {
+                navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
+                .then( 
+                    (registration) => console.log('serviceworker registration succeeded:', registration),
+                    (error) => console.log('serviceworker registration failed:', error)
+                );
+            }
+        });    
 }
 else
 {
