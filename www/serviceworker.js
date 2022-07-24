@@ -20,10 +20,6 @@ this.addEventListener('install', event => {
     console.log("installed");
 });
 
-self.onfetch = (event) => {
-    console.log("fetch"); 
-}
-
 this.addEventListener('fetch', event => {
     console.log("serviceworker: fetch", event.request);    
     event.respondWith(caches.match(event.request));    
