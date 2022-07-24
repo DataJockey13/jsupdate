@@ -2,10 +2,6 @@ if ('serviceWorker' in navigator)
 {
     navigator.serviceWorker.register('/js/serviceworker.js');
 
-    const serviceWorkerMessage = (msg) => {
-        navigator.serviceWorker.controller.postMessage(msg);
-    }
-
     navigator.serviceWorker.onmessage = (event) => {
         log(event);
     }
@@ -15,4 +11,8 @@ if ('serviceWorker' in navigator)
 else
 {
     log("serviceworker not supported");
+}
+
+const serviceWorkerMessage = (msg) => {
+    navigator.serviceWorker.controller.postMessage(msg);
 }

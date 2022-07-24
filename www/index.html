@@ -13,9 +13,10 @@
                 <a href="/about" onclick="route();">About</a>
             </nav>
             <div id="main-page"></div>
+            <div><button onclick="serviceWorkerMessage('ping');">  ping serviceworker  </button></div>
             <div style="visibility:hidden;" id="main-log"></div>            
             <div style="visibility:hidden;" id="update"><button onclick="reload()">  update  </button></div>
-        </div>
+        </div>        
 
         <script src="js/router.js"></script>
         <script src="js/reload.js"></script>
