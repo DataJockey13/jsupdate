@@ -24,5 +24,5 @@ const serviceWorkerMessage = (msg) => {
     navigator.serviceWorker.ready.then((registration) => {
         registration.controller.postMessage(msg.text);
     });
-    navigator.serviceWorker.controller.postMessage(msg.text);
+   // navigator.serviceWorker.controller.postMessage(msg.text);
 }
