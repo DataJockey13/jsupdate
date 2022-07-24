@@ -31,7 +31,7 @@ this.addEventListener('fetch', event => {
     const url = event.request.url || "";
     if (url == "https://jsupdate.blackserver.de/pages/about.html")
     {
-        event.respondWith( await fetch(event.request));
+        event.respondWith( async () => await fetch(event.request));
     }
     else
     {
