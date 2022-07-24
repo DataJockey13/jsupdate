@@ -20,9 +20,19 @@ else
     log("serviceworker not supported");
 }
 
+const broadcast = new BroadcastChannel('service-channel');
+broadcast.onmessage = (event) => {
+    if (event.data)
+    {
+        log("serviceworker(bc): " + event.data);
+    }
+    else
+    {
+        log("serviceworker(bc): " + event);
+    }  
+};
+
 const serviceWorkerMessage = (msg) => {
-    navigator.serviceWorker.ready.then((registration) => {
-        registration.controller.postMessage(msg.text);
-    });
+    broadcast.postMessage(msg);
    // navigator.serviceWorker.controller.postMessage(msg.text);
 }

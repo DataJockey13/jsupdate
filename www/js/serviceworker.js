@@ -5,8 +5,12 @@ const routes = [
     "/img/poc.jpg"
 ];
 
+const broadcast = new BroadcastChannel('service-channel');
+
 const log = (msg) => {
     console.log("sw: " + msg);
+
+    broadcast.postMessage(msg);
 
     self.clients.matchAll({
         includeUncontrolled: true,
@@ -51,3 +55,8 @@ this.addEventListener('fetch', event => {
         log("no match for " + event.request);
     }
 });
+
+
+broadcast.onmessage = (event) => {
+    log("message(bc) received: " + event.data);
+}
