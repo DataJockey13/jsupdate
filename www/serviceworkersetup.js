@@ -1,5 +1,16 @@
 if ('serviceWorker' in navigator)
 {
+        navigator.serviceWorker.getRegistration()
+            .then( (reg) => {
+                if (reg) {
+                    if (isUpdateAvailable().then(() => {
+                        serviceWorkerMessage("clear");
+                    }));                                    
+                } else {
+                    window.location.reload(true);
+                }
+            });   
+
         navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
         .then( 
             (registration) => console.log('serviceworker registration succeeded:', registration),
