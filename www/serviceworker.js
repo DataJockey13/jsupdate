@@ -1,3 +1,6 @@
+importScripts("/js/globals.js");
+importScripts("/js/check4update.js");
+
 const routes = [
     "/pages/404.html",
     "/pages/index.html",

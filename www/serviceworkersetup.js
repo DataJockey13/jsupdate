@@ -2,11 +2,7 @@ if ('serviceWorker' in navigator)
 {
         navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
         .then( 
-            (registration) => {
-                console.log('serviceworker registration succeeded:', registration);
-                serviceWorkerMessage("clear");
-                handleLocation();
-            },
+            (registration) => console.log('serviceworker registration succeeded:', registration),
             (error) => console.log('serviceworker registration failed:', error)
         );
 }
