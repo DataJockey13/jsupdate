@@ -11,10 +11,18 @@ this.addEventListener('install', event => {
             .open('resources')
             .then(cache => cache.addAll(routes))
     );
+    console.log("serviceworker: all cached");
 });
 
 this.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request)
-    );
+    const match = caches.match(event.request);
+    if (match)
+    {
+        console.log("serviceworker: cached response for " + event.request);
+        event.respondWith(match);    
+    }
+    else
+    {
+        console.log("serviceworker: no match for " + event.request);
+    }
 });

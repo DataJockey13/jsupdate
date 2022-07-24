@@ -1,6 +1,7 @@
 if ('serviceWorker' in navigator)
 {
-    navigator.serviceWorker.register('/js/serviceworker.js');
+    navigator.serviceWorker.register('/js/serviceworker.js');   
+    log("serviceworker registered"); 
 }
 else
 {
