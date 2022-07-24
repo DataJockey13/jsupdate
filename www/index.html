@@ -26,15 +26,5 @@
         <script src="js/reload.js"></script>
         <script src="js/log.js"></script>
         <script src="serviceworkersetup.js"></script>
-        <script>
-            self.onload = async () => {
-                const updateAvailable = await isUpdateAvailable();
-                if (updateAvailable)
-                {
-                    console.log("outdated");
-                    reload();
-                }
-            }
-        </script>
     </body>
 </html>
