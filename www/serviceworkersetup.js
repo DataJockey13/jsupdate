@@ -4,11 +4,10 @@ if ('serviceWorker' in navigator)
             .then( (reg) => {
                 if (reg) {
                     if (isUpdateAvailable().then(() => {
-                        serviceWorkerMessage("reload");
+                        caches.delete('resources');
+                        reg.unregister().then();
                     }));                                    
-                } else {
-                    window.location.reload(true);
-                }
+                };
             });   
 
         navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
