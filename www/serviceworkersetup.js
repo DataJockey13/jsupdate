@@ -22,5 +22,5 @@ broadcast.onmessage = (event) => {
 };
 
 const serviceWorkerMessage = (msg) => {
-    broadcast.postMessage(msg, {source: "app"});
+    broadcast.postMessage(msg);
 }
