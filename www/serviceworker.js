@@ -21,8 +21,10 @@ this.addEventListener('install', event => {
 });
 
 this.addEventListener('fetch', event => {
-    console.log("serviceworker: fetch", event.request);    
-    event.respondWith(caches.match(event.request));    
+    console.log("serviceworker: fetch", event.request); 
+    const match = caches.match(event.request);
+    console.log("serviceworker: match", match); 
+    event.respondWith(match);    
 });
 
 broadcast.onmessage = (event) => {
