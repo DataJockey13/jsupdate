@@ -2,8 +2,8 @@ if ('serviceWorker' in navigator)
 {
         navigator.serviceWorker.getRegistration()
         .then( (reg) => {
-            if (reg) {    
-                    reg.update();          
+            if (reg) {
+                serviceWorkerMessage("check");
             } else {
                 navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
                 .then( 
