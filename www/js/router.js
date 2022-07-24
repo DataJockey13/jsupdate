@@ -9,7 +9,8 @@ const route = (event) => {
     event = event || window.event;
     event.preventDefault();
     window.history.pushState({}, "", event.target.href);
-    handleLocation();    
+    handleLocation();
+    check4update();   
 }
 
 const handleLocation = async () => {
@@ -17,8 +18,6 @@ const handleLocation = async () => {
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((data) => data.text());
     document.getElementById("main-page").innerHTML = html;    
-    
-    check4update();
 }
 
 window.onpopstate = handleLocation;
