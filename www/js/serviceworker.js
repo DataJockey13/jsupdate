@@ -5,24 +5,28 @@ const routes = [
     "/img/poc.jpg"
 ];
 
+const log = (msg) => {
+    postMessage(msg);
+}
+
 this.addEventListener('install', event => {
     event.waitUntil(
         caches
             .open('resources')
             .then(cache => cache.addAll(routes))
     );
-    console.log("serviceworker: all cached");
+    log("all cached");
 });
 
 this.addEventListener('fetch', event => {
     const match = caches.match(event.request);
     if (match)
     {
-        console.log("serviceworker: cached response for " + event.request);
+        log("cached response for " + event.request);
         event.respondWith(match);    
     }
     else
     {
-        console.log("serviceworker: no match for " + event.request);
+        log("no match for " + event.request);
     }
 });
