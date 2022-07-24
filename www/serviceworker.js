@@ -7,8 +7,7 @@ const routes = [
 
 const broadcast = new BroadcastChannel('service-channel');
 
-const log = (msg) => {
-    console.log("sw: " + msg);
+const appMessage = (msg) => {
     broadcast.postMessage(msg);
 }
 
@@ -18,18 +17,18 @@ this.addEventListener('install', event => {
             .open('resources')
             .then(cache => cache.addAll(routes))
     );
-    log("installed");
+    console.log("installed");
 });
 
 self.onfetch = (event) => {
-    log("fetch"); 
+    console.log("fetch"); 
 }
 
 this.addEventListener('fetch', event => {
-    log("fetch");
+    console.log("serviceworker: fetch", event.request);    
     event.respondWith(caches.match(event.request));    
 });
 
 broadcast.onmessage = (event) => {
-    console.log("serviceworker message received: " + event.data);
+    console.log("serviceworker message received: " + event.data, event);
 }
