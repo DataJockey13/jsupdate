@@ -6,8 +6,19 @@ const routes = [
 ];
 
 const log = (msg) => {
-    postMessage(msg);
+    self.clients.matchAll({
+        includeUncontrolled: true,
+        type: 'window',
+    }).then((clients) => {
+        clients.forEach(client => {
+            client.postMessage(msg);
+        });
+    })
 }
+
+this.addEventListener('message', (event) => {
+    log("message received");
+});
 
 this.addEventListener('install', event => {
     event.waitUntil(
