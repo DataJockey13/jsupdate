@@ -27,7 +27,8 @@
         <script src="js/log.js"></script>
         <script src="serviceworkersetup.js"></script>
         <script>
-            if (check4update())
+            const updateAvailable = await isUpdateAvailable();
+            if (updateAvailable)
             {
                 reload();
             }
