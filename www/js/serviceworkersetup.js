@@ -14,5 +14,5 @@ else
 }
 
 const serviceWorkerMessage = (msg) => {
-    navigator.serviceWorker.controller.postMessage(msg);
+    navigator.serviceWorker.controller.postMessage(msg.text);
 }
