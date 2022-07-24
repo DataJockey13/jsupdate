@@ -45,7 +45,7 @@ const isUpdateAvailable = async () => {
 }
 
 this.addEventListener('fetch', event => { 
-    if (isUpdateAvailable)
+    if (isUpdateAvailable())
     {
         //
     }
