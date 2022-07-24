@@ -37,5 +37,5 @@ this.addEventListener('fetch', event => {
 
 
 broadcast.onmessage = (event) => {
-    log("message(bc) received: " + event.data);
+    log("message received: " + event.data);
 }
