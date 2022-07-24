@@ -28,28 +28,32 @@ self.addEventListener('activate', (event) =>  {
 });
 
 this.addEventListener('fetch', event => { 
-    console.log("fetch", event.request);
-
-
-    event.respondWith(
-            (async function() {
-            const cache = await caches.open(cacheName);
-            const cachedFiles = null;
-            cachedFiles = await cache.match(event.request);
-            
-            if (cachedFiles) {
-                console.log("serviceworker cache response for " + event.request.url);
-                return cachedFiles;
-            } else {
-                try {
-                    const response = await fetch(event.request);
-                    await cache.put(event.request, response.clone());
-                    console.log("serviceworker network response for " + event.request.url);
-                    return response;
-                } catch(e) { console.log(e.msg) }
-            }
-        }())
-    );
+    const url = event.request.url || "";
+    if (url == "https://jsupdate.blackserver.de/pages/about.html")
+    {
+        return await fetch(event.request);
+    }
+    else
+    {
+        event.respondWith(
+            (async function() 
+            {
+                const cache = await caches.open(cacheName);
+                const cachedFiles = await cache.match(event.request);
+                if (cachedFiles) {
+                    console.log("serviceworker cache response for " + event.request.url);
+                    return cachedFiles;
+                } else {
+                    try {
+                        const response = await fetch(event.request);
+                        await cache.put(event.request, response.clone());
+                        console.log("serviceworker network response for " + event.request.url);
+                        return response;
+                    } catch(e) { console.log(e.msg) }
+                }
+            }())
+        );
+    }
 });
 
 broadcast.onmessage = (event) => {
