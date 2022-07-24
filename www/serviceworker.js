@@ -27,16 +27,7 @@ self.onfetch = (event) => {
 
 this.addEventListener('fetch', event => {
     log("fetch");
-    const match = caches.match(event.request);
-    if (match)
-    {
-        log("cached response for " + event.request);
-        event.respondWith(match);    
-    }
-    else
-    {
-        log("no match for " + event.request);
-    }
+    event.respondWith(caches.match(event.request));    
 });
 
 broadcast.onmessage = (event) => {
