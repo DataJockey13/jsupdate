@@ -29,6 +29,10 @@ this.addEventListener('install', event => {
     log("all cached");
 });
 
+self.addEventListener('activate', (event) => {
+    event.waitUntil(self.clients.claim());
+});
+
 this.addEventListener('fetch', event => {
     const match = caches.match(event.request);
     if (match)
