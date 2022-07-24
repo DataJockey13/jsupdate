@@ -1,9 +1,21 @@
+importScripts("/js/globals.js");
+
 const routes = [
     "/pages/404.html",
     "/pages/index.html",
     "/pages/about.html",
     "/img/poc.jpg"
 ];
+
+const isUpdateAvailable = async () => {
+    const version = await fetch(versionFile, {cache: "no-cache"})
+        .then((data) => data.text())
+        .catch((error) => {
+            console.log(error);
+        });   
+
+    return version != currentVersion;
+}
 
 const cacheName = 'resources';
 
@@ -57,6 +69,8 @@ this.addEventListener('fetch', event => {
 });
 
 broadcast.onmessage = (event) => {
+    console.log("serviceworker message received: " + event.data);
+
     if (event.data == "reload")
     {
         self.caches.delete(cacheName);
@@ -65,6 +79,16 @@ broadcast.onmessage = (event) => {
     if (event.data == "clear")
     {
         self.caches.delete(cacheName);
+        console.log("serviceworker caches deleted");
     }
-    console.log("serviceworker message received: " + event.data);
+    if (event.data == "check")
+    {
+        isUpdateAvailable().then((isUpdate) => {
+            if (isUpdate)
+            {
+                self.caches.delete(cacheName);
+                console.log("serviceworker caches deleted");
+            }    
+        });    
+    }    
 }
