@@ -57,5 +57,9 @@ this.addEventListener('fetch', event => {
 });
 
 broadcast.onmessage = (event) => {
+    if (event.data == "reload")
+    {
+        self.caches.delete(cacheName);
+    }
     console.log("serviceworker message received: " + event.data, event);
 }

@@ -1,4 +1,5 @@
 const reload = () => {
+    serviceWorkerMessage("reload");
     navigator.serviceWorker.getRegistration()
         .then( (reg) => {
             if (reg) {
