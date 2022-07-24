@@ -29,7 +29,7 @@ self.addEventListener('activate', (event) =>  {
 
 this.addEventListener('fetch', event => { 
     const url = event.request.url || "";
-    if (url == "https://jsupdate.blackserver.de/version.info")
+    if (url.endsWith("/version.info"))
     {
         event.respondWith((async () => await fetch(event.request))());
     }
