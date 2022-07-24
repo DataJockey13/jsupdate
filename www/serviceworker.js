@@ -41,13 +41,13 @@ this.addEventListener('fetch', event => {
                 const cache = await caches.open(cacheName);
                 const cachedFiles = await cache.match(event.request);
                 if (cachedFiles) {
-                    console.log("serviceworker cache response for " + event.request.url);
+                    console.log("serviceworker cache response for " + url);
                     return cachedFiles;
                 } else {
                     try {
                         const response = await fetch(event.request);
                         await cache.put(event.request, response.clone());
-                        console.log("serviceworker network response for " + event.request.url);
+                        console.log("serviceworker network response for " + url);
                         return response;
                     } catch(e) { console.log(e.msg) }
                 }
