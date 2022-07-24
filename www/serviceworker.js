@@ -31,8 +31,14 @@ this.addEventListener('fetch', event => {
     event.respondWith(
             (async function() {
             const cache = await caches.open(cacheName);
-            const cachedFiles = await cache.match(event.request);
-            if(cachedFiles) {
+            const cachedFiles = null;
+            
+            if (!event.request.url.endsWidth('/version.info'))
+            {
+                cachedFiles = await cache.match(event.request)
+            }
+
+            if (cachedFiles) {
                 console.log("serviceworker cache response for " + event.request.url);
                 return cachedFiles;
             } else {
