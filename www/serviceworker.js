@@ -1,4 +1,4 @@
-importScripts("globals.js");
+importScripts("/js/globals.js");
 
 const routes = [
     "/pages/404.html",
