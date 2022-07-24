@@ -35,7 +35,8 @@ this.addEventListener('fetch', event => {
     }
 });
 
-
 broadcast.onmessage = (event) => {
-    log("message received: " + event.data);
+    console.log("sw: message received: " + event.data);
+    console.log("sw: message received from origin: " + event.origin);
+    console.log("sw: message received from source: " + event.source);
 }

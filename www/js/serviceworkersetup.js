@@ -10,14 +10,9 @@ else
 
 const broadcast = new BroadcastChannel('service-channel');
 broadcast.onmessage = (event) => {
-    if (event.data)
-    {
-        log("serviceworker: " + event.data);
-    }
-    else
-    {
-        log("serviceworker: " + event);
-    }  
+    console.log("service-channel: message received: " + event.data);
+    console.log("service-channel: message received from origin: " + event.origin);
+    console.log("service-channel: message received from source: " + event.source);
 };
 
 const serviceWorkerMessage = (msg) => {
