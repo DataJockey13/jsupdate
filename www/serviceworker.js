@@ -1,5 +1,4 @@
 importScripts("/js/globals.js");
-importScripts("/js/check4update.js");
 
 const routes = [
     "/pages/404.html",
@@ -7,6 +6,16 @@ const routes = [
     "/pages/about.html",
     "/img/poc.jpg"
 ];
+
+const isUpdateAvailable = async () => {
+    const version = await fetch(versionFile, {cache: "no-cache"})
+        .then((data) => data.text())
+        .catch((error) => {
+            console.log(error);
+        });   
+
+    return version != currentVersion;
+}
 
 const cacheName = 'resources';
 
