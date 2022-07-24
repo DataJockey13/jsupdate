@@ -1,9 +1,26 @@
+const routes = [
+    "/pages/404.html",
+    "/pages/index.html",
+    "/pages/about.html",
+    "/img/poc.jpg"
+];
+
 const cacheName = 'resources';
 
 const broadcast = new BroadcastChannel('service-channel');
 const appMessage = (msg) => {
     broadcast.postMessage(msg);
 }
+
+this.addEventListener('install', event => {
+    console.log("serviceworker caching files");
+    event.waitUntil(
+        caches
+            .open(cacheName)
+            .then(cache => cache.addAll(routes))
+    );
+    self.skipWaiting();    
+});
 
 self.addEventListener('activate', (event) =>  {
     console.log('serviceworker claiming control');
