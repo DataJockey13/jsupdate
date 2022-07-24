@@ -6,7 +6,7 @@ const routes = [
 ];
 
 const log = (msg) => {
-    console.log(msg);
+    console.log("sw: " + msg);
 
     self.clients.matchAll({
         includeUncontrolled: true,

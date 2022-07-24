@@ -3,7 +3,7 @@ if ('serviceWorker' in navigator)
     navigator.serviceWorker.register('/js/serviceworker.js');
 
     navigator.serviceWorker.onmessage = (event) => {
-        log(event);
+        log("serviceworker: " + event);
     }
 
     log("serviceworker registered"); 
