@@ -6,6 +6,8 @@ const routes = [
 ];
 
 const log = (msg) => {
+    console.log(msg);
+
     self.clients.matchAll({
         includeUncontrolled: true,
         type: 'window',
@@ -16,7 +18,7 @@ const log = (msg) => {
     })
 }
 
-this.addEventListener('message', (event) => {
+this.addEventListener('message', (event) => {   
     log("message received");
 });
 
@@ -24,13 +26,17 @@ this.addEventListener('install', event => {
     event.waitUntil(
         caches
             .open('resources')
-            .then(cache => cache.addAll(routes))
+            .then(cache => {
+                cache.addAll(routes);
+                self.skipWaiting();
+            })
     );
-    log("all cached");
+    log("installed");
 });
 
 self.addEventListener('activate', (event) => {
     event.waitUntil(self.clients.claim());
+    log("activated");
 });
 
 this.addEventListener('fetch', event => {
