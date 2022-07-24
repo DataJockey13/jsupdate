@@ -3,9 +3,12 @@ if ('serviceWorker' in navigator)
         navigator.serviceWorker.getRegistration()
             .then( (reg) => {
                 if (reg) {
-                    if (isUpdateAvailable().then(() => {
-                        caches.delete('resources');
-                        reg.unregister().then();
+                    if (isUpdateAvailable().then((res) => {
+                        if (res)
+                        {
+                            caches.delete('resources');
+                            reg.unregister().then();    
+                        }
                     }));                                    
                 };
             });   
