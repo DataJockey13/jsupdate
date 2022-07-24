@@ -1,18 +1,6 @@
 if ('serviceWorker' in navigator)
 {
     navigator.serviceWorker.register('/js/serviceworker.js');
-
-    navigator.serviceWorker.onmessage = (event) => {
-        if (event.data)
-        {
-            log("serviceworker: " + event.data);
-        }
-        else
-        {
-            log("serviceworker: " + event);
-        }        
-    }
-
     log("serviceworker registered"); 
 }
 else
@@ -24,15 +12,14 @@ const broadcast = new BroadcastChannel('service-channel');
 broadcast.onmessage = (event) => {
     if (event.data)
     {
-        log("serviceworker(bc): " + event.data);
+        log("serviceworker: " + event.data);
     }
     else
     {
-        log("serviceworker(bc): " + event);
+        log("serviceworker: " + event);
     }  
 };
 
 const serviceWorkerMessage = (msg) => {
     broadcast.postMessage(msg);
-   // navigator.serviceWorker.controller.postMessage(msg.text);
 }
