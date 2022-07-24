@@ -13,25 +13,24 @@ const appMessage = (msg) => {
 }
 
 self.addEventListener('activate', (event) =>  {
-    console.log('Claiming control');
+    console.log('serviceworker claiming control');
     return self.clients.claim();
 });
 
 this.addEventListener('install', event => {
+    console.log("serviceworker caching files");
     event.waitUntil(
         caches
             .open(cacheName)
             .then(cache => cache.addAll(routes))
     );
-    self.skipWaiting();
-    console.log("installed");
+    self.skipWaiting();    
 });
 
 this.addEventListener('fetch', event => {
-    //console.log("serviceworker: fetch " + event.request.url); 
-
-    event.respondWith( async () => {
-        const cache = await caches.open(cacheName);
+    event.respondWith(
+        (async function() {
+            const cache = await caches.open(cacheName);
             const cachedFiles = await cache.match(event.request);
             if (cachedFiles) {
                 console.log("serviceworker cache response for " + event.request.url);
@@ -40,7 +39,8 @@ this.addEventListener('fetch', event => {
                 console.log("serviceworker network response for " + event.request.url);
                 return fetch(event.request);
             }
-        });
+        }())
+    );      
 });
 
 broadcast.onmessage = (event) => {
