@@ -69,6 +69,8 @@ this.addEventListener('fetch', event => {
 });
 
 broadcast.onmessage = (event) => {
+    console.log("serviceworker message received: " + event.data);
+
     if (event.data == "reload")
     {
         self.caches.delete(cacheName);
@@ -77,6 +79,7 @@ broadcast.onmessage = (event) => {
     if (event.data == "clear")
     {
         self.caches.delete(cacheName);
+        console.log("serviceworker caches deleted");
     }
     if (event.data == "check")
     {
@@ -84,8 +87,8 @@ broadcast.onmessage = (event) => {
             if (isUpdate)
             {
                 self.caches.delete(cacheName);
+                console.log("serviceworker caches deleted");
             }    
         });    
-    }
-    console.log("serviceworker message received: " + event.data);
+    }    
 }
