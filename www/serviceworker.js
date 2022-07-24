@@ -21,6 +21,10 @@ this.addEventListener('install', event => {
     log("installed");
 });
 
+self.onfetch = (event) => {
+    log("fetch"); 
+}
+
 this.addEventListener('fetch', event => {
     log("fetch");
     const match = caches.match(event.request);
@@ -36,7 +40,5 @@ this.addEventListener('fetch', event => {
 });
 
 broadcast.onmessage = (event) => {
-    console.log("sw: message received: " + event.data);
-    console.log("sw: message received from origin: " + event.origin);
-    console.log("sw: message received from source: " + event.source);
+    console.log("serviceworker message received: " + event.data);
 }

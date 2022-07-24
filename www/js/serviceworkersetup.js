@@ -10,11 +10,9 @@ else
 
 const broadcast = new BroadcastChannel('service-channel');
 broadcast.onmessage = (event) => {
-    console.log("service-channel: message received: " + event.data);
-    console.log("service-channel: message received from origin: " + event.origin);
-    console.log("service-channel: message received from source: " + event.source);
+    console.log("service-channel message received: " + event.data);
 };
 
 const serviceWorkerMessage = (msg) => {
-    broadcast.postMessage(msg);
+    broadcast.postMessage(msg, {source: "app"});
 }
