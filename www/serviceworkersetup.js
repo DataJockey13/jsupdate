@@ -4,7 +4,7 @@ if ('serviceWorker' in navigator)
             .then( (reg) => {
                 if (reg) {
                     if (isUpdateAvailable().then(() => {
-                        serviceWorkerMessage("clear");
+                        serviceWorkerMessage("reload");
                     }));                                    
                 } else {
                     window.location.reload(true);
