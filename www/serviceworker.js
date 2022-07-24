@@ -4,6 +4,7 @@ const routes = [
     "/pages/about.html",
     "/img/poc.jpg"
 ];
+const cacheName = 'resources';
 
 const broadcast = new BroadcastChannel('service-channel');
 
@@ -14,7 +15,7 @@ const appMessage = (msg) => {
 this.addEventListener('install', event => {
     event.waitUntil(
         caches
-            .open('resources')
+            .open(cacheName)
             .then(cache => cache.addAll(routes))
     );
     console.log("installed");
