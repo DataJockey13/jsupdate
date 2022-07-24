@@ -5,6 +5,7 @@ if ('serviceWorker' in navigator)
             (registration) => {
                 console.log('serviceworker registration succeeded:', registration);
                 serviceWorkerMessage("clear");
+                handleLocation();
             },
             (error) => console.log('serviceworker registration failed:', error)
         );
