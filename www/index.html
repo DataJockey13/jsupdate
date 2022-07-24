@@ -27,11 +27,13 @@
         <script src="js/log.js"></script>
         <script src="serviceworkersetup.js"></script>
         <script>
-            const updateAvailable = await isUpdateAvailable();
-            if (updateAvailable)
-            {
-                console.log("outdated");
-                reload();
+            self.onload = async () => {
+                const updateAvailable = await isUpdateAvailable();
+                if (updateAvailable)
+                {
+                    console.log("outdated");
+                    reload();
+                }
             }
         </script>
     </body>
