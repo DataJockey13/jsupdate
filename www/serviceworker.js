@@ -22,17 +22,17 @@ this.addEventListener('install', event => {
 });
 
 this.addEventListener('fetch', event => {
-    console.log("serviceworker: fetch", event.request); 
+    //console.log("serviceworker: fetch " + event.request.url); 
 
     event.respondWith(
         (async function() {
             const cache = await caches.open(cacheName);
             const cachedFiles = await cache.match(event.request);
             if (cachedFiles) {
-                console.log("serviceworker cache response");
+                console.log("serviceworker cache response for " + event.request.url);
                 return cachedFiles;
             } else {
-                console.log("serviceworker network response");
+                console.log("serviceworker network response for " + event.request.url);
                 return fetch(event.request);
             }
         }())
