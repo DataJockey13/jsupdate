@@ -22,9 +22,20 @@ this.addEventListener('install', event => {
 
 this.addEventListener('fetch', event => {
     console.log("serviceworker: fetch", event.request); 
-    const match = caches.match(event.request);
-    console.log("serviceworker: match", match); 
-    event.respondWith(match);    
+
+    event.respondWith(
+        (async function() {
+            const cache = await caches.open(cacheName);
+            const cachedFiles = await cache.match(event.request);
+            if (cachedFiles) {
+                console.log("serviceworker cache response");
+                return cachedFiles;
+            } else {
+                console.log("serviceworker network response");
+                return fetch(event.request);
+            }
+        }())
+    );      
 });
 
 broadcast.onmessage = (event) => {
