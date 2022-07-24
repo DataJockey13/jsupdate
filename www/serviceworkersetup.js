@@ -1,21 +1,11 @@
 if ('serviceWorker' in navigator)
 {
-        navigator.serviceWorker.getRegistration()
-            .then( (reg) => {
-                if (reg) {
-                    if (isUpdateAvailable().then((res) => {
-                        if (res)
-                        {
-                            caches.delete('resources');
-                            reg.unregister().then();    
-                        }
-                    }));                                    
-                };
-            });   
-
         navigator.serviceWorker.register('/serviceworker.js', {scope: './'})
         .then( 
-            (registration) => console.log('serviceworker registration succeeded:', registration),
+            (registration) => {
+                console.log('serviceworker registration succeeded:', registration);
+                serviceWorkerMessage("clear");
+            },
             (error) => console.log('serviceworker registration failed:', error)
         );
 }
