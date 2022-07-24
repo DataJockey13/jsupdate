@@ -21,5 +21,11 @@ else
 }
 
 const serviceWorkerMessage = (msg) => {
+    navigator.serviceWorker.ready.then((registration) => {
+        if (registration.active)
+        {
+            registration.controller.postMessage(msg.text);
+        }
+    });
     navigator.serviceWorker.controller.postMessage(msg.text);
 }
