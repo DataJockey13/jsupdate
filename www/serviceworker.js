@@ -41,7 +41,6 @@ this.addEventListener('fetch', event => {
                 return fetch(event.request);
             }
         });
-    );      
 });
 
 broadcast.onmessage = (event) => {
